@@ -1,37 +1,30 @@
 /**
- * * @author Ettien Suárez Ramírez
+ * Clase main final.
+ * Solo se encarga de instanciar GestorCubos y probar metodos.
+ * @author Ettien Suárez Ramírez
+ * @version 2.0
  */
 public class Main {
+    public static void main(String[] args) {
 
-    /**
-     * Metodo principal (entry point) de la aplicacion.
-     * * @param args argumentos de linea de comandos (no se usan en este caso)
-     */
-    public static void main(final String[] args) {
+        GestorCubos gestor = new GestorCubos();
+        gestor.inicializarLista();
 
-        // Renombramos las variables para que tengan sentido logico
-        int limite = 0;
-        int sumandoBase = 15;
-        int incrementoExtra = 20;
-        int contador = 0;
+        System.out.println("Lista antes de ordenar:");
+        for(Cubo c : gestor.getLista()) {
+            System.out.println("- Cubo de lado: " + c.getLado());
+        }
 
-        do {
-            incrementoExtra = 10 + sumandoBase;
-            contador = contador + incrementoExtra;
-            contador++;
+        gestor.ordenarPorTamano();
 
-            if (contador < 10) {
-                limite = 15;
-                contador = contador - 1;
-            } else {
-                limite = 10;
-                contador = contador - 1;
-            }
+        System.out.println("\nLista despues de ordenar:");
+        for(Cubo c : gestor.getLista()) {
+            System.out.println("- Cubo de lado: " + c.getLado());
+        }
 
-            int auxiliar;
-            auxiliar = contador;
-            limite = auxiliar;
-
-        } while (contador < 100);
+        // Comprobacion de encaje
+        Cubo c1 = new Cubo(5f);
+        Cubo c2 = new Cubo(10f);
+        System.out.println("\n¿El cubo de lado 5 cabe en el de 10? " + gestor.cabeDentro(c1, c2));
     }
 }
